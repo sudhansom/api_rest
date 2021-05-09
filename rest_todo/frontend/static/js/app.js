@@ -34,6 +34,7 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 var activeItem = null
+var list_snapshot = []
 buildList()
 
 function buildList(){
@@ -48,6 +49,11 @@ function buildList(){
 
         var list = data
         for (var i in list){
+
+            try{
+                document.getElementById(`data-row-${i}`).remove()
+            }catch(err){
+            }
 
             var title = `<span class="title">${list[i].title}</span>`
             if (list[i].completed == true){
@@ -70,6 +76,12 @@ function buildList(){
             wrapper.innerHTML += item
 
         }
+        if (list_snapshot.length !== list.length){
+            for (i = list.lenght; i<list_snapshot.length; i++){
+                document.getElementById(`data-row-${i}`).remove()
+            }
+        }
+        list_snapshot = list
         for (var i in list){
             var editBtn = document.getElementsByClassName('edit')[i]
             var deleteBtn = document.getElementsByClassName('delete')[i]

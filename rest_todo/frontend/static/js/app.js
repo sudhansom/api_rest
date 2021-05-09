@@ -39,7 +39,7 @@ buildList()
 
 function buildList(){
     var wrapper = document.getElementById('list-wrapper')
-    wrapper.innerHTML = ''
+//    wrapper.innerHTML = ''
     var url = 'http://127.0.0.1:8000/api/task-list/'
 
     fetch(url)
@@ -76,7 +76,7 @@ function buildList(){
             wrapper.innerHTML += item
 
         }
-        if (list_snapshot.length !== list.length){
+        if (list_snapshot.length > list.length){
             for (i = list.lenght; i<list_snapshot.length; i++){
                 document.getElementById(`data-row-${i}`).remove()
             }
